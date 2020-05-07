@@ -30,4 +30,19 @@ time = as.vector(data$Day)
 plot.ts(covid, main="Total Detected COVID-19 Cases Count", xlab="Day", ylab="Detected COVID-19 Cases")
 ```
 
+After removing the exponential growth rate by taking the logarithm of our data, we can use a statistical model called ARIMA to further fit the data. Using this ARIMA model, we can predict the infection numbers for the days we were provided in the actual data, and then look at how close our predictions are to the actual data to check how good our model is. 
+
+```{r chunk5, echo=FALSE, fig.height = 4, fig.width = 7}
+# find the residuals from parametric model fitting exponential trend
+arima_model = arima(log(covid), c(1, 2, 1))
+plot.ts(residuals(arima_model), main="Residuals of COVID-19 Cases Counts Modeled with ARIMA", xlab="Day", ylab="Detected COVID-19 Cases")
+```
+
+
+
+# Predictions
+
+# Limitations
+
+
 
